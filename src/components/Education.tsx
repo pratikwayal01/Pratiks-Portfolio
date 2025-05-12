@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { MapPinIcon, CalendarIcon } from '@heroicons/react/24/outline'
 
