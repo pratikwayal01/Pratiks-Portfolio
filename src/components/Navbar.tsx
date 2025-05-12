@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { SunIcon, MoonIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 
@@ -10,9 +10,23 @@ interface NavbarProps {
 const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  // Load dark mode preference from localStorage on component mount
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem('darkMode')
+    if (savedDarkMode !== null) {
+      setDarkMode(savedDarkMode === 'true')
+    }
+  }, [setDarkMode])
+
+  // Save dark mode preference to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode.toString())
+  }, [darkMode])
+
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
@@ -24,7 +38,7 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-bold font-mono"
+          className="text-2xl font-bold font-mono dark:text-white"
         >
           PW
         </motion.div>

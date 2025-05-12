@@ -30,7 +30,7 @@ const Hero = () => {
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
           >
             <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
-            Download Resume
+            <a href="https://drive.google.com/file/d/1FympfGyzprgnOhcsv5kXNQkfWYSjYP4d/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download Resume</a>
           </motion.button>
         </motion.div>
       </div>
