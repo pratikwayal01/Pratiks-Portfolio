@@ -39,23 +39,25 @@ function AppContent() {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-[#09090B]' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen w-full overflow-x-hidden ${darkMode ? 'dark bg-[#09090B]' : 'bg-gray-50'}`}>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Routes>
-        <Route path="/" element={
-          <>
-            <Hero />
-            <About />
-            <Experience />
-            <Education />
-            <Projects />
-            <Blog />
-            <Contact />
-          </>
-        } />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-      </Routes>
+      <main className="w-full overflow-x-hidden">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <About />
+              <Experience />
+              <Education />
+              <Projects />
+              <Blog />
+              <Contact />
+            </>
+          } />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   )

@@ -33,9 +33,14 @@ const Education = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto"
+        className="max-w-4xl mx-auto px-4"
       >
-        <h2 className="text-3xl font-bold font-mono mb-12 dark:text-white">Education</h2>
+        <h2 className="text-4xl font-bold text-center mb-4 dark:text-white">
+          Education
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 text-center mb-12">
+          My academic background and qualifications
+        </p>
         
         <div className="space-y-8">
           {educationData.map((edu, index) => (

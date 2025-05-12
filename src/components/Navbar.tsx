@@ -54,7 +54,7 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
   }, [location.pathname])
 
   return (
-    <nav className="py-6 px-4 sm:px-6 lg:px-8 fixed w-full top-0 z-50 bg-white dark:bg-[#09090B] bg-opacity-95 dark:bg-opacity-95 backdrop-blur-sm">
+    <nav className="py-6 px-4 sm:px-6 lg:px-8 fixed w-full top-0 z-50 bg-white dark:bg-[#09090B] bg-opacity-95 dark:bg-opacity-95 backdrop-blur-sm overflow-x-hidden">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="text-2xl font-bold font-mono dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
           PW
@@ -123,7 +123,7 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden mt-4 space-y-4 px-4"
+          className="md:hidden mt-4 space-y-4 px-4 pb-4"
         >
           {navItems.map((item) => (
             item.href.startsWith('/#') ? (

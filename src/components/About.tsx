@@ -15,11 +15,16 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto"
+        className="max-w-4xl mx-auto px-4"
       >
-        <h2 className="text-3xl font-bold font-mono mb-8 dark:text-white">About Me</h2>
+        <h2 className="text-4xl font-bold text-center mb-4 dark:text-white">
+          About Me
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 text-center mb-12">
+          Get to know more about my journey and expertise
+        </p>
         
-        <div className="prose dark:prose-invert max-w-none">
+        <div className="prose dark:prose-invert max-w-none mb-12">
           <p className="text-gray-600 dark:text-gray-300 mb-6">
             I'm a passionate developer with a unique blend of expertise in DevOps, robotics, and full-stack development.
             Currently working at Zoho, I specialize in building robust infrastructure solutions and managing high-availability
@@ -33,8 +38,9 @@ const About = () => {
           </p>
         </div>
 
-        <h3 className="text-2xl font-bold font-mono mt-12 mb-6 dark:text-white">Skills</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <h3 className="text-2xl font-bold text-center mb-8 dark:text-white">Skills</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skills.map((skillGroup) => (
             <motion.div
               key={skillGroup.category}
@@ -49,7 +55,7 @@ const About = () => {
                 {skillGroup.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
+                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-sm"
                   >
                     {skill}
                   </span>
