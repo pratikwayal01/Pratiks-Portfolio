@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen ${darkMode ? 'dark bg-[#09090B]' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main>
