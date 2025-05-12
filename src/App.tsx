@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -12,47 +12,59 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Loader from './components/Loader'
 
-function App() {
+function AppContent() {
   const [darkMode, setDarkMode] = useState(() => {
     const savedDarkMode = localStorage.getItem('darkMode')
     return savedDarkMode ? savedDarkMode === 'true' : false
   })
   const [loading, setLoading] = useState(true)
+  const location = useLocation()
+
+  useEffect(() => {
+    // Save dark mode preference
+    localStorage.setItem('darkMode', darkMode.toString())
+  }, [darkMode])
 
   useEffect(() => {
     // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 2000)
+    }, 1000) // Reduced loading time
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [location.pathname]) // Only show loader on route changes
 
   if (loading) {
     return <Loader />
   }
 
   return (
+    <div className={`min-h-screen ${darkMode ? 'dark bg-[#09090B]' : 'bg-gray-50'}`}>
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <About />
+            <Experience />
+            <Education />
+            <Projects />
+            <Blog />
+            <Contact />
+          </>
+        } />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+      </Routes>
+      <Footer />
+    </div>
+  )
+}
+
+function App() {
+  return (
     <Router>
-      <div className={`min-h-screen ${darkMode ? 'dark bg-[#09090B]' : 'bg-gray-50'}`}>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <About />
-              <Experience />
-              <Education />
-              <Projects />
-              <Blog />
-              <Contact />
-            </>
-          } />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-        </Routes>
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   )
 }

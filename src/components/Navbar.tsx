@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { SunIcon, MoonIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 
@@ -11,12 +11,21 @@ interface NavbarProps {
 const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   const handleNavigation = (path: string) => {
     if (path.startsWith('/#')) {
       // If we're not on the home page, first navigate to home
       if (location.pathname !== '/') {
-        window.location.href = path
+        navigate('/')
+        // Wait for navigation to complete before scrolling
+        setTimeout(() => {
+          const section = path.substring(2)
+          const element = document.getElementById(section)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 100)
       } else {
         // If we're already on home page, just scroll to section
         const section = path.substring(2)
@@ -26,6 +35,7 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
         }
       }
     }
+    setIsOpen(false)
   }
 
   const navItems = [
@@ -38,8 +48,13 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
     { name: 'Contact', href: '/#contact' },
   ]
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false)
+  }, [location.pathname])
+
   return (
-    <nav className="py-6 px-8 sm:px-12 lg:px-16">
+    <nav className="py-6 px-4 sm:px-6 lg:px-8 fixed w-full top-0 z-50 bg-white dark:bg-[#09090B] bg-opacity-95 dark:bg-opacity-95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="text-2xl font-bold font-mono dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
           PW
@@ -108,16 +123,13 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden mt-4 space-y-4"
+          className="md:hidden mt-4 space-y-4 px-4"
         >
           {navItems.map((item) => (
             item.href.startsWith('/#') ? (
               <button
                 key={item.name}
-                onClick={() => {
-                  handleNavigation(item.href)
-                  setIsOpen(false)
-                }}
+                onClick={() => handleNavigation(item.href)}
                 className={`block w-full text-left text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
                   location.pathname === '/' && window.location.hash === item.href.substring(1)
                     ? 'text-indigo-600 dark:text-indigo-400'
