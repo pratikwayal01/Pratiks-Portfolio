@@ -30,11 +30,33 @@ const Contact = () => {
     subject: '',
     message: ''
   })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+    setStatus('loading')
+
+    try {
+      const response = await fetch('https://formspree.io/f/manopjnq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        setTimeout(() => setStatus('idle'), 3000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 3000)
+      }
+    } catch (error) {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 3000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -82,6 +104,7 @@ const Contact = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 required
+                disabled={status === 'loading'}
               />
             </div>
 
@@ -97,6 +120,7 @@ const Contact = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 required
+                disabled={status === 'loading'}
               />
             </div>
 
@@ -112,6 +136,7 @@ const Contact = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 required
+                disabled={status === 'loading'}
               />
             </div>
 
@@ -127,6 +152,7 @@ const Contact = () => {
                 rows={4}
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 required
+                disabled={status === 'loading'}
               />
             </div>
 
@@ -134,10 +160,27 @@ const Contact = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
+              disabled={status === 'loading'}
+              className={`w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white transition-colors ${
+                status === 'success'
+                  ? 'bg-green-600 hover:bg-green-700'
+                  : status === 'error'
+                  ? 'bg-red-600 hover:bg-red-700'
+                  : 'bg-indigo-600 hover:bg-indigo-700'
+              }`}
             >
-              <PaperAirplaneIcon className="h-5 w-5 mr-2" />
-              Send Message
+              {status === 'loading' ? (
+                'Sending...'
+              ) : status === 'success' ? (
+                'Message Sent!'
+              ) : status === 'error' ? (
+                'Error Sending Message'
+              ) : (
+                <>
+                  <PaperAirplaneIcon className="h-5 w-5 mr-2" />
+                  Send Message
+                </>
+              )}
             </motion.button>
           </motion.form>
 
