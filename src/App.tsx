@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -6,6 +7,7 @@ import Experience from './components/Experience'
 import Education from './components/Education'
 import Projects from './components/Projects'
 import Blog from './components/Blog'
+import BlogPost from './components/BlogPost'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Loader from './components/Loader'
@@ -31,21 +33,27 @@ function App() {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-[#09090B]' : 'bg-gray-50'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Router>
+      <div className={`min-h-screen ${darkMode ? 'dark bg-[#09090B]' : 'bg-gray-50'}`}>
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <main>
-          <Hero />
-          <About />
-          <Experience />
-          <Education />
-          <Projects />
-          <Blog />
-          <Contact />
-        </main>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <About />
+              <Experience />
+              <Education />
+              <Projects />
+              <Blog />
+              <Contact />
+            </>
+          } />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
         <Footer />
       </div>
-    </div>
+    </Router>
   )
 }
 

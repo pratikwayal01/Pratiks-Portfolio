@@ -1,34 +1,39 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
-
-const blogPosts = [
-  {
-    title: 'Building High-Availability PostgreSQL Clusters',
-    excerpt: 'A deep dive into setting up and maintaining HA PostgreSQL clusters in production environments.',
-    date: '2024-03-15',
-    readTime: '8 min read',
-    category: 'DevOps',
-    slug: 'ha-postgresql-clusters'
-  },
-  {
-    title: 'Robotics in Modern Industry',
-    excerpt: 'Exploring the role of robotics in modern manufacturing and automation.',
-    date: '2024-03-10',
-    readTime: '6 min read',
-    category: 'Robotics',
-    slug: 'robotics-modern-industry'
-  },
-  {
-    title: 'CI/CD Best Practices',
-    excerpt: 'Essential practices for implementing effective CI/CD pipelines in your development workflow.',
-    date: '2024-03-05',
-    readTime: '5 min read',
-    category: 'DevOps',
-    slug: 'cicd-best-practices'
-  }
-]
+import { getAllPosts } from '../utils/markdown'
 
 const Blog = () => {
+  const [posts, setPosts] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [showAll, setShowAll] = useState(false)
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const allPosts = await getAllPosts()
+        setPosts(allPosts)
+      } catch (error) {
+        console.error('Error fetching posts:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-dark-accent"></div>
+      </div>
+    )
+  }
+
+  const visiblePosts = showAll ? posts : posts.slice(0, 3)
+  const hasMore = posts.length > 3
+
   return (
     <section id="blog" className="py-20">
       <motion.div
@@ -36,49 +41,63 @@ const Blog = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto"
+        className="max-w-4xl mx-auto px-4"
       >
-        <h2 className="text-3xl font-bold font-mono mb-12 dark:text-white">Blog</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
+        <h2 className="text-4xl font-bold text-center mb-4 dark:text-white">
+          Blog
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 text-center mb-12">
+          Thoughts, tutorials, and insights on software development
+        </p>
+
+        <div className="grid gap-8 md:grid-cols-2">
+          {visiblePosts.map((post, index) => (
             <motion.article
               key={post.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
             >
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full text-sm">
-                    {post.category}
-                  </span>
-                </div>
-                
-                <h3 className="text-xl font-bold mb-3 dark:text-white">
+              <Link to={`/blog/${post.slug}`} className="block p-6">
+                <h3 className="text-xl font-bold mb-2 dark:text-white">
                   {post.title}
                 </h3>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {post.excerpt}
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  {post.description}
                 </p>
-                
-                <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                  <div className="flex items-center gap-1">
-                    <CalendarIcon className="h-4 w-4" />
-                    <span>{new Date(post.date).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <ClockIcon className="h-4 w-4" />
-                    <span>{post.readTime}</span>
-                  </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {post.tags.map((tag: string) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </div>
+                <time className="text-sm text-gray-500 dark:text-gray-400">
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+              </Link>
             </motion.article>
           ))}
         </div>
+        {hasMore && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setShowAll((prev) => !prev)}
+              className="px-6 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors"
+            >
+              {showAll ? 'Show Less' : 'Show More'}
+            </button>
+          </div>
+        )}
       </motion.div>
     </section>
   )

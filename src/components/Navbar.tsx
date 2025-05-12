@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { SunIcon, MoonIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 
@@ -9,42 +10,71 @@ interface NavbarProps {
 
 const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
+
+  const handleNavigation = (path: string) => {
+    if (path.startsWith('/#')) {
+      // If we're not on the home page, first navigate to home
+      if (location.pathname !== '/') {
+        window.location.href = path
+      } else {
+        // If we're already on home page, just scroll to section
+        const section = path.substring(2)
+        const element = document.getElementById(section)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }
+    }
+  }
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Education', href: '#education' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/#about' },
+    { name: 'Experience', href: '/#experience' },
+    { name: 'Education', href: '/#education' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/#contact' },
   ]
 
   return (
-    <nav className="py-6">
-      <div className="flex items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-bold font-mono dark:text-white"
-        >
+    <nav className="py-6 px-8 sm:px-12 lg:px-16">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <Link to="/" className="text-2xl font-bold font-mono dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
           PW
-        </motion.div>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-            >
-              {item.name}
-            </a>
+            item.href.startsWith('/#') ? (
+              <button
+                key={item.name}
+                onClick={() => handleNavigation(item.href)}
+                className={`text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
+                  location.pathname === '/' && window.location.hash === item.href.substring(1) 
+                    ? 'text-indigo-600 dark:text-indigo-400' 
+                    : ''
+                }`}
+              >
+                {item.name}
+              </button>
+            ) : (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
+                  location.pathname === item.href ? 'text-indigo-600 dark:text-indigo-400' : ''
+                }`}
+              >
+                {item.name}
+              </Link>
+            )
           ))}
         </div>
 
-        {/* Right side buttons - visible on both mobile and desktop */}
+        {/* Right side buttons */}
         <div className="flex items-center space-x-4">
           <button
             onClick={() => setDarkMode(!darkMode)}
@@ -81,14 +111,33 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
           className="md:hidden mt-4 space-y-4"
         >
           {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="block text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </a>
+            item.href.startsWith('/#') ? (
+              <button
+                key={item.name}
+                onClick={() => {
+                  handleNavigation(item.href)
+                  setIsOpen(false)
+                }}
+                className={`block w-full text-left text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
+                  location.pathname === '/' && window.location.hash === item.href.substring(1)
+                    ? 'text-indigo-600 dark:text-indigo-400'
+                    : ''
+                }`}
+              >
+                {item.name}
+              </button>
+            ) : (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`block text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
+                  location.pathname === item.href ? 'text-indigo-600 dark:text-indigo-400' : ''
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            )
           ))}
         </motion.div>
       )}
