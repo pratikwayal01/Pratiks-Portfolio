@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { SunIcon, MoonIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 
@@ -9,19 +9,6 @@ interface NavbarProps {
 
 const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
-
-  // Load dark mode preference from localStorage on component mount
-  useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode')
-    if (savedDarkMode !== null) {
-      setDarkMode(savedDarkMode === 'true')
-    }
-  }, [setDarkMode])
-
-  // Save dark mode preference to localStorage when it changes
-  useEffect(() => {
-    localStorage.setItem('darkMode', darkMode.toString())
-  }, [darkMode])
 
   const navItems = [
     { name: 'Home', href: '#home' },
