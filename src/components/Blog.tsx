@@ -7,21 +7,21 @@ interface BlogCardProps {
   index: number;
 }
 
-// Reusable BlogCard component
+// BlogCard component with grayscale image hover effect
 export const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+    className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
   >
     <div className="h-48 bg-gray-200 dark:bg-gray-700 relative">
       {post.coverImage ? (
         <img 
           src={post.coverImage} 
           alt={post.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition duration-300 ease-in-out filter grayscale group-hover:grayscale-0"
         />
       ) : (
         <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -64,11 +64,11 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => (
   </motion.div>
 )
 
-// Blog component for home page - showing only the latest 2 posts
+
+// Blog section showing latest 2 posts
 const Blog: React.FC = () => {
-  // Get only the two most recent blog posts
   const recentPosts = blogPosts.slice(0, 2)
-  
+
   return (
     <section id="blog" className="py-20">
       <motion.div
@@ -84,14 +84,13 @@ const Blog: React.FC = () => {
         <p className="text-gray-600 dark:text-gray-300 text-center mb-12">
           My thoughts and insights on technology and development
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {recentPosts.map((post, index) => (
             <BlogCard key={post.id} post={post} index={index} />
           ))}
         </div>
-        
-        {/* "Read More Articles" Button */}
+
         <div className="flex justify-center mt-12">
           <Link
             to="/blog"

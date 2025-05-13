@@ -104,17 +104,19 @@ const About = () => {
             >
               <h4 className="text-lg font-semibold mb-4 dark:text-white">{skillGroup.category}</h4>
               <div className="flex flex-wrap gap-2">
-                {skillGroup.items.map(({ name, icon }) => (
-                  <span
-                  key={name}
-                  className="group flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-sm transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400">
-                <span className="text-base transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                {icon}
-                </span>
-                  {name}
-                  </span>
-                ))}
-              </div>
+  {skillGroup.items.map(({ name, icon }) => (
+    <span
+      key={name}
+      className="group flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-sm transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400"
+    >
+      <span className="text-base transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+        {icon}
+      </span>
+      {name}
+    </span>
+  ))}
+</div>
+
             </motion.div>
           ))}
         </div>
