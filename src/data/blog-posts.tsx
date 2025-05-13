@@ -20,7 +20,7 @@ export const blogPosts: BlogPost[] = [
     date: "May 2, 2025",
     category: "Web Development",
     coverImage: "/images/blog/Twlwind.jpg",
-    content: "/posts/best-devops-practices.md",
+    content: "/public/posts/best-devops-practices.md",
     tags: ["React", "Tailwind CSS", "Frontend"]
   },
   {
@@ -31,7 +31,7 @@ export const blogPosts: BlogPost[] = [
     date: "April 18, 2025",
     category: "Robotics",
     coverImage: "/images/blog/Robocon.png",
-    content: "/posts/intro-to-kubernetes.md",
+    content: "/public/posts/intro-to-kubernetes.md",
     tags: ["Computer Vision", "Robotics", "OpenCV"]
   },
   {
@@ -42,7 +42,7 @@ export const blogPosts: BlogPost[] = [
     date: "April 5, 2025",
     category: "DevOps",
     coverImage: "/images/blog/docker.jpeg",
-    content: "/posts/ha-postgresql-cluster.md",
+    content: "/public/posts/ha-postgresql-cluster.md",
     tags: ["Docker", "DevOps", "Containers"]
   },
   {
@@ -53,7 +53,7 @@ export const blogPosts: BlogPost[] = [
     date: "March 22, 2025",
     category: "DevOps",
     coverImage: "/images/blog/github-actions.png",
-    content: "/posts/ha-postgresql-cluster.md",
+    content: "public/posts/ha-postgresql-cluster.md",
     tags: ["GitHub Actions", "CI/CD", "DevOps"]
   }
 ]
