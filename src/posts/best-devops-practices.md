@@ -1,9 +1,5 @@
 ---
 title: "Best DevOps Practices for Reliable Software Delivery"
-date: "2025-05-12"
-description: "A practical guide to essential DevOps practices I follow for building scalable, reliable, and maintainable systems."
-slug: "best-devops-practices"
-tags: ["DevOps", "CI/CD", "Automation", "Infrastructure"]
 ---
 
 ## 🔧 Introduction

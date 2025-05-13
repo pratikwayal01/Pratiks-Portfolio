@@ -1,9 +1,3 @@
----
-title: "Introduction to Kubernetes for Developers"
-date: "2024-04-10"
-description: "A beginner-friendly guide to understanding Kubernetes and container orchestration."
-tags: ["Kubernetes", "Containers", "DevOps"]
----
 
 # Introduction to Kubernetes for Developers
 

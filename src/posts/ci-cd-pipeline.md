@@ -1,9 +1,3 @@
----
-title: "Building a CI/CD Pipeline with GitHub Actions"
-date: "2024-04-01"
-description: "Learn how to automate your deployments using GitHub Actions for continuous integration and delivery."
-tags: ["CI/CD", "GitHub Actions", "Automation", "DevOps"]
----
 
 # Building a CI/CD Pipeline with GitHub Actions
 

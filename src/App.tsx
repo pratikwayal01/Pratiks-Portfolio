@@ -6,7 +6,9 @@ import About from './components/About'
 import Experience from './components/Experience'
 import Education from './components/Education'
 import Projects from './components/Projects'
+import AllProjects from './components/AllProjects'
 import Blog from './components/Blog'
+import AllBlogs from './components/AllBlogs'
 import BlogPost from './components/BlogPost'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -54,7 +56,10 @@ function AppContent() {
               <Contact />
             </>
           } />
-          <Route path="/blog" element={<Blog />} />
+          {/* Added Projects page route */}
+          <Route path="/projects" element={<AllProjects />} />
+          {/* Updated Blog routes */}
+          <Route path="/blog" element={<AllBlogs />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
       </main>
@@ -71,4 +76,4 @@ function App() {
   )
 }
 
-export default App 
+export default App

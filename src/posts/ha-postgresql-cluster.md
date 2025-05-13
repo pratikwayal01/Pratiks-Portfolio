@@ -1,9 +1,3 @@
----
-title: "Setting Up a High-Availability PostgreSQL Cluster"
-date: "2024-03-20"
-description: "A comprehensive guide to setting up and managing a highly available PostgreSQL cluster using Patroni and etcd"
-tags: ["PostgreSQL", "DevOps", "High Availability", "Database"]
----
 
 # Setting Up a High-Availability PostgreSQL Cluster
 
