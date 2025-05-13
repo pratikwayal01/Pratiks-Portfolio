@@ -20,7 +20,7 @@ export const projects: Project[] = [
   {
     title: 'Image Forgery Detection – CNN Deployment',
     description: 'Led the deployment of a CNN-based Flask application for detecting image forgeries. Containerized the application using Docker, ensuring environment consistency. Implemented CI/CD pipelines with GitHub Actions to automate image building and deployment to Docker Hub upon each push. Deployed the Docker container on AWS EC2 and configured NGINX as a reverse proxy for efficient request handling.',
-    image: "/images/projects/imageCNN.jpeg",
+    image: "/images/projects/ImageCNN.jpeg",
     stack: ['Python', 'Flask', 'Docker', 'GitHub Actions', 'AWS EC2', 'NGINX'],
     github: 'https://github.com/pratikwayal01/Image-Forgery-Detection-CNN-Updated',
     demo:'https://forge-detect.me/'
