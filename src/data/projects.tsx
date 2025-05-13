@@ -11,7 +11,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: 'Autonomous Robot for Robocon',
-    description: 'Led the development of an autonomous robot for DD Robocon 2024, implementing computer vision and path planning algorithms.',
+    description: 'Led the development of an autonomous robot for DD Robocon 2024, integrating computer vision and path planning using ROS, OpenCV, and Python to navigate dynamic arenas with precision.',
     image: "/images/projects/robocon.jpeg",
     stack: ['C++', 'OpenCV', 'ROS', 'Python'],
     github: 'https://github.com/pratikwayal01/robocon-2024',
@@ -19,7 +19,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Image Forgery Detection – CNN Deployment',
-    description: 'Led the deployment of a CNN-based Flask application for detecting image forgeries. Containerized the application using Docker, ensuring environment consistency. Implemented CI/CD pipelines with GitHub Actions to automate image building and deployment to Docker Hub upon each push. Deployed the Docker container on AWS EC2 and configured NGINX as a reverse proxy for efficient request handling.',
+    description: 'Built and deployed a CNN-powered Flask app to detect image forgeries. Containerized with Docker, integrated CI/CD via GitHub Actions, and deployed on AWS EC2 with NGINX as a reverse proxy.',
     image: "/images/projects/ImageCNN.jpeg",
     stack: ['Python', 'Flask', 'Docker', 'GitHub Actions', 'AWS EC2', 'NGINX'],
     github: 'https://github.com/pratikwayal01/Image-Forgery-Detection-CNN-Updated',
@@ -27,7 +27,7 @@ export const projects: Project[] = [
   },  
   {
     title: 'ParkCircle – Smart Parking Space Detection',
-    description: 'Developed a computer vision system to detect and monitor parking space occupancy in real-time using video input. Implemented TensorFlow and OpenCV for image recognition and data processing.',
+    description: 'Created a real-time parking occupancy detection system using video streams. Leveraged TensorFlow and OpenCV to detect and visualize parking space availability dynamically.',
     image: "/images/projects/ParkCircle.jpeg",
     stack: ['Python', 'TensorFlow', 'OpenCV'],
     github: 'https://github.com/pratikwayal01/ParkCircle',
@@ -35,7 +35,7 @@ export const projects: Project[] = [
   },  
   {
     title: 'Portfolio Website',
-    description: 'A modern, responsive portfolio website built with React and Tailwind CSS, featuring dark mode and smooth animations.',
+    description: 'Designed and developed a sleek, responsive portfolio site with React and Tailwind CSS. Includes dark mode, smooth scroll animations, and mobile optimization.',
     image: "/images/projects/Portfolio.png",
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     github: 'https://github.com/pratikwayal01/Pratiks-Portfolio',
@@ -43,7 +43,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Plant Health Monitoring System',
-    description: 'Developed a Flask-based web application to monitor plant health by analyzing IoT sensor data and weather information. Features include CSV data upload, analysis of soil nutrients (N-P-K), temperature, humidity, pH, and rainfall, comparison with ideal values for specific crops and growth stages, health status reports, and data visualization using Chart.js. Integrated OpenWeather API for weather alerts.',
+    description: 'Engineered a Flask web app to assess plant health using IoT sensor data and weather APIs. Analyzed soil nutrients and environmental data, and visualized results using Chart.js for actionable insights.',
     image: "/images/projects/Plant-health.jpeg",
     stack: ['Python', 'Flask', 'Pandas', 'Chart.js', 'OpenWeather API'],
     github: 'https://github.com/pratikwayal01/plant_health_monitoring_system',
