@@ -37,16 +37,28 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-
+  
     try {
-      // Add your form submission logic here
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulated API call
-      setStatus('success')
-      setFormData({ name: '', email: '', message: '' })
+      const response = await fetch('https://formspree.io/f/manopjnq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+  
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        throw new Error('Form submission failed')
+      }
     } catch (error) {
+      console.error(error)
       setStatus('error')
     }
   }
+  
 
   return (
     <section id="contact" className="py-20">
