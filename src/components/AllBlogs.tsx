@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { blogPosts } from '../data/blog-posts'
-import { BlogCard } from './Blog' // Import the BlogCard component from Blog.tsx
+import { BlogCard } from '../components/BlogCard'
 
 // All blogs page
 const AllBlogs: React.FC = () => {

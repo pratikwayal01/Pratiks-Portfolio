@@ -79,7 +79,7 @@ const About = () => {
         <div className="prose dark:prose-invert max-w-none mb-12">
           <p className="text-gray-600 dark:text-gray-300 mb-6">
             I'm a passionate developer with a unique blend of expertise in DevOps, robotics, and full-stack development.
-            Currently working at Zoho, I specialize in building robust infrastructure solutions and managing high-availability
+            just completed my internship at Zoho, I specialize in building robust infrastructure solutions and managing high-availability
             PostgreSQL systems. My experience extends to leading development teams and mentoring junior developers.
           </p>
 

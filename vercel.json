@@ -1,13 +1,8 @@
 {
-  "headers": [
+  "rewrites": [
     {
-      "source": "/posts/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
