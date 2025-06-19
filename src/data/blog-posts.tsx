@@ -14,6 +14,17 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
+    title: "Robocon Journey 2024",
+    slug: "robocon-journey-2024",
+    excerpt: "My journey with Robocon 2024, from the initial idea to the final product.",
+    date: "May 2, 2025",
+    category: "Robotics",   
+    coverImage: "/images/blog/Robocon-2024.jpg",
+    content: "/Posts/robocon-journey.md",
+    tags: ["Robotics", "Robocon", "2024", "Robocon Journey", "Robocon 2024"]
+  },
+  {
+    id: 1,
     title: "Getting Started with React and Tailwind CSS",
     slug: "react-tailwind-getting-started",
     excerpt: "Learn how to set up a new React project with Tailwind CSS for beautiful, responsive interfaces.",
@@ -25,14 +36,14 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 2,
-    title: "Computer Vision in Robotics: My Experience with Robocon",
+    title: "Introduction to Kubernetes",
     slug: "computer-vision-robotics",
-    excerpt: "Exploring how computer vision technologies are revolutionizing robotics competitions.",
+    excerpt: "Exploring how kubernetes is used to manage containerized applications.",
     date: "April 18, 2025",
-    category: "Robotics",
-    coverImage: "/images/blog/Robocon.png",
+    category: "DevOps",
+    coverImage: "/images/blog/k8s.png",
     content: "/Posts/intro-to-kubernetes.md",
-    tags: ["Computer Vision", "Robotics", "OpenCV"]
+    tags: ["Kubernetes", "DevOps", "Containers"]
   },
   {
     id: 3,
