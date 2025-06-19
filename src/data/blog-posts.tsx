@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "My journey with Robocon 2024, from the initial idea to the final product.",
     date: "May 2, 2025",
     category: "Robotics",   
-    coverImage: "/images/blog/Robocon-2024.jpg",
+    coverImage: "/images/blog/Robocon-2024.jpeg",
     content: "/Posts/robocon-journey.md",
     tags: ["Robotics", "Robocon", "2024", "Robocon Journey", "Robocon 2024"]
   },
