@@ -3,6 +3,20 @@ import { MapPinIcon, CalendarIcon } from '@heroicons/react/24/outline'
 
 const experiences = [
   {
+    title: 'DevOps Engineer',
+    company: 'DpdZero',
+    location: 'Bengaluru, Karnataka',
+    period: 'July 2024 – Present',
+    points: [
+      'Started as a DevOps Intern for three months before transitioning to a full-time onsite role in October 2024.',
+      'Collaborated with the development team to maintain and test robust CI/CD pipelines, ensuring seamless deployments.',
+      'Migration of container workloads from Amazon ECS to EKS, optimizing scalability and reliability.',
+      'Integrated observability solutions using OpenTelemetry and Grafana, enhancing application monitoring and alerting.',
+      'Managed and maintained AWS infrastructure critical to company operations, leveraging automation and best practices.',
+      'Configured and managed ArgoCD for GitOps-based deployment workflows, streamlining application delivery.'
+    ]
+  },
+  {
     title: 'Project Trainee',
     company: 'Zoho Business Survives LLP',
     location: 'Nagpur, Maharashtra',
