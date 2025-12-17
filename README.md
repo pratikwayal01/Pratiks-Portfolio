@@ -100,6 +100,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📫 Contact
 
-Your Name - [@Pratik_2520](https://x.com/pratik_2520) - pratikswayal123@gamail.com
-
-Project Link: [https://github.com/pratikwayal01/Pratiks-Portfolio](https://github.com/pratikwayal01/Pratiks-Portfolio) 
+[@Pratik_2520](https://x.com/pratik_2520) - pratikswayal123@gamail.com
