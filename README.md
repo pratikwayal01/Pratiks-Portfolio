@@ -86,7 +86,7 @@ The project uses Tailwind CSS for styling. You can customize the theme in `tailw
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE]([LICENSE](https://opensource.org/license/mit)) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/license/mit) file for details.
 
 ## 👥 Contributing
 
