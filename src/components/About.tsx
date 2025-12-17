@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion' 
 import {
   FaDocker,
   FaAws,
@@ -18,6 +18,7 @@ import {
   SiPython,
   SiNginx,
   SiGithubactions,
+  SiGo
 } from 'react-icons/si'
 
 const skills = [
@@ -26,8 +27,7 @@ const skills = [
     items: [
       { name: 'Python', icon: <SiPython /> },
       { name: 'C++', icon: <SiCplusplus /> },
-      { name: 'JavaScript', icon: <SiJavascript /> },
-      { name: 'TypeScript', icon: <SiTypescript /> },
+      { name: 'Go', icon: <SiGo/> }
     ],
   },
   {
@@ -36,8 +36,17 @@ const skills = [
       { name: 'Docker', icon: <FaDocker /> },
       { name: 'Kubernetes', icon: <SiKubernetes /> },
       { name: 'AWS', icon: <FaAws /> },
-      { name: 'CI/CD', icon: <SiGithubactions /> },
+      { name: 'ECS', icon: <FaAws /> },             // ECS & EKS are AWS services
+      { name: 'EKS', icon: <SiKubernetes /> },      // Strong with EKS; using K8s icon is fine
       { name: 'Linux', icon: <FaLinux /> },
+      { name: 'CI/CD', icon: <SiGithubactions /> },
+      { name: 'Terraform', icon: <SiTerraform /> },
+      { name: 'Jenkins', icon: <SiJenkins /> },
+      // Add a placeholder icon or emoji for tools you don't have in react-icons
+      { name: 'ArgoCD', icon: <span>🎯</span> },
+      { name: 'OpenTelemetry', icon: <span>🛰️</span> },
+      { name: 'Grafana', icon: <span>📊</span> },
+      { name: 'Prometheus', icon: <span>🌡️</span> }
     ],
   },
   {
