@@ -4,7 +4,7 @@ import { MapPinIcon, CalendarIcon } from '@heroicons/react/24/outline'
 const experiences = [
   {
     title: 'DevOps Engineer',
-    company: 'DpdZero',
+    company: 'Dpdzero',
     location: 'Bengaluru, Karnataka',
     period: 'July 2024 – Present',
     points: [
