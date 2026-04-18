@@ -13,80 +13,95 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const handleNavigation = (path: string) => {
-    if (path.startsWith('/#')) {
-      // If we're not on the home page, first navigate to home
-      if (location.pathname !== '/') {
-        navigate('/')
-        // Wait for navigation to complete before scrolling
+  // detect if we're running inside the /v1 subtree
+  const isV1 = location.pathname.startsWith('/v1')
+  const homeBase = isV1 ? '/v1' : '/'
+
+  const navItems = [
+    { name: 'Home',       href: homeBase },
+    { name: 'About',      href: `${homeBase}#about` },
+    { name: 'Experience', href: `${homeBase}#experience` },
+    { name: 'Education',  href: `${homeBase}#education` },
+    { name: 'Projects',   href: isV1 ? '/v1/projects' : '/projects' },
+    { name: 'Blog',       href: isV1 ? '/v1/blog' : '/blog' },
+    { name: 'Contact',    href: `${homeBase}#contact` },
+  ]
+
+  // current "home" path for detecting active section links
+  const homePath = homeBase
+
+  const handleNavigation = (href: string) => {
+    const hashIdx = href.indexOf('#')
+    if (hashIdx !== -1) {
+      const sectionId = href.substring(hashIdx + 1)
+      const basePath = href.substring(0, hashIdx)
+
+      if (location.pathname !== basePath) {
+        // navigate to home first, then scroll
+        navigate(basePath || homeBase)
         setTimeout(() => {
-          const section = path.substring(2)
-          const element = document.getElementById(section)
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-          }
-        }, 100)
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+        }, 120)
       } else {
-        // If we're already on home page, just scroll to section
-        const section = path.substring(2)
-        const element = document.getElementById(section)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
       }
     }
     setIsOpen(false)
   }
 
-  const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/#about' },
-    { name: 'Experience', href: '/#experience' },
-    { name: 'Education', href: '/#education' },
-    { name: 'Projects', href: '/#projects' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/#contact' },
-  ]
-
-  // Close mobile menu when route changes
+  // close mobile menu on route change
   useEffect(() => {
     setIsOpen(false)
   }, [location.pathname])
 
+  const linkClass = (href: string) => {
+    const isActive = location.pathname === href ||
+      (href.includes('#') && location.pathname === href.split('#')[0])
+    return `text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
+      isActive ? 'text-indigo-600 dark:text-indigo-400' : ''
+    }`
+  }
+
+  const renderItem = (item: { name: string; href: string }, block = false) => {
+    const isHash = item.href.includes('#')
+
+    if (isHash) {
+      return (
+        <button
+          key={item.name}
+          onClick={() => handleNavigation(item.href)}
+          className={`${block ? 'block w-full text-left' : ''} ${linkClass(item.href)}`}
+        >
+          {item.name}
+        </button>
+      )
+    }
+
+    return (
+      <Link
+        key={item.name}
+        to={item.href}
+        onClick={() => setIsOpen(false)}
+        className={`${block ? 'block' : ''} ${linkClass(item.href)}`}
+      >
+        {item.name}
+      </Link>
+    )
+  }
+
   return (
     <nav className="py-6 px-4 sm:px-6 lg:px-8 fixed w-full top-0 z-50 bg-white dark:bg-[#09090B] bg-opacity-95 dark:bg-opacity-95 backdrop-blur-sm overflow-x-hidden">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold font-mono dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+        <Link
+          to={homePath}
+          className="text-2xl font-bold font-mono dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+        >
           PW
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            item.href.startsWith('/#') ? (
-              <button
-                key={item.name}
-                onClick={() => handleNavigation(item.href)}
-                className={`text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
-                  location.pathname === '/' && window.location.hash === item.href.substring(1) 
-                    ? 'text-indigo-600 dark:text-indigo-400' 
-                    : ''
-                }`}
-              >
-                {item.name}
-              </button>
-            ) : (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
-                  location.pathname === item.href ? 'text-indigo-600 dark:text-indigo-400' : ''
-                }`}
-              >
-                {item.name}
-              </Link>
-            )
-          ))}
+          {navItems.map((item) => renderItem(item))}
         </div>
 
         {/* Right side buttons */}
@@ -125,36 +140,11 @@ const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden mt-4 space-y-4 px-4 pb-4"
         >
-          {navItems.map((item) => (
-            item.href.startsWith('/#') ? (
-              <button
-                key={item.name}
-                onClick={() => handleNavigation(item.href)}
-                className={`block w-full text-left text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
-                  location.pathname === '/' && window.location.hash === item.href.substring(1)
-                    ? 'text-indigo-600 dark:text-indigo-400'
-                    : ''
-                }`}
-              >
-                {item.name}
-              </button>
-            ) : (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`block text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors ${
-                  location.pathname === item.href ? 'text-indigo-600 dark:text-indigo-400' : ''
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            )
-          ))}
+          {navItems.map((item) => renderItem(item, true))}
         </motion.div>
       )}
     </nav>
   )
 }
 
-export default Navbar 
+export default Navbar

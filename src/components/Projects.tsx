@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { CodeBracketIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
-import { projects, Project } from '../data/projects' // Import from the TypeScript data file
+import { projects, Project } from '../data/projects'
 
 interface ProjectCardProps {
   project: Project;
@@ -78,9 +78,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
 
 // For the home page - only show the two most recent projects
 const Projects: React.FC = () => {
-  // Get only the first two projects (most recent)
-  const featuredProjects = projects.slice(0, 2);
-  
+  const location = useLocation()
+  const base = location.pathname.startsWith('/v1') ? '/v1' : ''
+  const featuredProjects = projects.slice(0, 2)
+
   return (
     <section id="projects" className="py-20">
       <motion.div
@@ -96,17 +97,16 @@ const Projects: React.FC = () => {
         <p className="text-gray-600 dark:text-gray-400 text-center mb-12">
           Featured projects and personal works
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
-        
-        {/* "See All Works" Button */}
+
         <div className="flex justify-center mt-12">
           <Link
-            to="/projects"
+            to={`${base}/projects`}
             className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm hover:shadow-md"
           >
             See All Works

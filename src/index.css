@@ -8,9 +8,64 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply antialiased;
+  }
+}
+
+/* ── V2 terminal portfolio — scoped to .v2-root ─────────────────────────── */
+
+.v2-root {
+  --bg-main: #1e1e2e;
+  --bg-panel: #181825;
+  --bg-input: #11111b;
+  --text-main: #cdd6f4;
+  --text-dim: #585b70;
+  --accent-amber: #fab387;
+  --accent-teal: #89dceb;
+  --border-main: #313244;
+  --status-ok: #a6e3a1;
+  --status-error: #f38ba8;
+  --cursor-color: #f5c2e7;
+  --font-mono: 'Fira Code', monospace;
+
+  font-family: var(--font-mono);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+.v2-root .terminal-cursor {
+  animation: terminal-blink 1s steps(1) infinite;
+  color: var(--cursor-color);
+}
+
+.v2-root .panel-scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.v2-root .panel-scanline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(232, 220, 200, 0.04),
+    rgba(232, 220, 200, 0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  pointer-events: none;
+}
+
+.v2-root .terminal-panel {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent 28%);
+}
+
+@keyframes terminal-blink {
+  50% {
+    opacity: 0;
   }
 }
 
@@ -18,4 +73,4 @@
   .text-balance {
     text-wrap: balance;
   }
-} 
+}
