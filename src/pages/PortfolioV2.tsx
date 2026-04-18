@@ -41,11 +41,10 @@ const ALL_COMMANDS = [
   'whoami',
   'pwd',
   'ls',
-  'ls sections/',
-  'ls blog/',
-  'ls projects/',
+  'ls ..',
   'clear',
   'uname',
+  'uname -a',
   'echo',
   'theme',
   'cat resume',
@@ -54,6 +53,7 @@ const ALL_COMMANDS = [
   'cat /etc/pratik',
   'ssh github',
   'open github',
+  'cd ..',
   'cd about',
   'cd skills',
   'cd experience',
@@ -777,14 +777,47 @@ const HeroTerminal = () => {
     bottomRef.current?.scrollIntoView({ block: 'nearest' })
   }, [history])
 
-  // Tab suggestion logic — filter against current input
+  // Tab suggestion logic — context-aware based on cwd
   useEffect(() => {
     if (!input.trim()) {
       setSuggestion(null)
       setSuggestionList([])
       return
     }
-    const matches = ALL_COMMANDS.filter((c) => c.startsWith(input) && c !== input)
+
+    const currentCwd = cwdRef.current
+
+    // Build dynamic candidates from current directory entries
+    const dirEntries = DIR_TREE[currentCwd] ?? []
+    const cdCandidates = dirEntries
+      .filter((e) => e.isDir)
+      .map((e) => `cd ${e.name}`)
+    const catCandidates = dirEntries
+      .filter((e) => !e.isDir)
+      .map((e) => `cat ${e.name}`)
+    const lsCandidates = dirEntries.map((e) =>
+      e.isDir ? `ls ${e.name}/` : `ls ${e.name}`
+    )
+
+    // Combine: cwd-specific first, then global fallbacks (excluding cd/cat/ls that are now dynamic)
+    const globalFallbacks = ALL_COMMANDS.filter(
+      (c) => !c.startsWith('cd ') && !c.startsWith('cat ') && !c.startsWith('ls ')
+    )
+    // Keep absolute cat paths and ls bare
+    const absoluteCats = ['cat resume', 'cat about.md', 'cat /proc/pratik', 'cat /etc/pratik']
+    const candidates = [
+      ...new Set([
+        ...globalFallbacks,
+        ...absoluteCats,
+        ...cdCandidates,
+        ...catCandidates,
+        ...lsCandidates,
+        'cd ..',
+        'ls',
+      ]),
+    ]
+
+    const matches = candidates.filter((c) => c.startsWith(input) && c !== input)
     setSuggestionList(matches)
     setSuggestion(matches.length === 1 ? matches[0] : null)
   }, [input])
