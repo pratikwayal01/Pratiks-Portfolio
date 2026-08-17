@@ -4,6 +4,7 @@
 const GREEN = '\x1b[32m'
 const YELLOW = '\x1b[33m'
 const GRAY = '\x1b[90m'
+const CYAN = '\x1b[36m'
 const RESET = '\x1b[0m'
 const BOLD = '\x1b[1m'
 
@@ -18,26 +19,33 @@ const banner = GREEN + `
 `
 
 const about = `
-${YELLOW}ABOUT${RESET}
+${YELLOW}${BOLD}ABOUT${RESET}
   Hi, I'm Pratik Wayal — DevOps engineer from Pune, India.
   I build infrastructure, automation and robots.
 
-  Skills: Linux, AWS, Kubernetes, Docker, CI/CD, Python,
-          ROS, OpenCV, Networking, GitOps (ArgoCD)
   Interests: autonomous systems, breaking things in staging
 `
 
 const skills = `
-${YELLOW}SKILLS${RESET}
-  DevOps/Cloud: AWS (EKS, ECS, Lambda, CloudFront), Kubernetes, Docker,
-                 Terraform, GitHub Actions, ArgoCD, Helm, Nginx, Linux
-  Languages:     Python, C++, Bash, JavaScript/TypeScript, Go
-  Robotics:      ROS, OpenCV, SLAM, path planning
-  Monitoring:    Prometheus, Grafana, OpenTelemetry
+${YELLOW}${BOLD}SKILLS${RESET}
+  Python   ${GREEN}████████████████████░░░${RESET}  88%
+  C++      ${GREEN}████████████████░░░░░░░${RESET}  79%
+  Go       ${GREEN}███████████████░░░░░░░░${RESET}  74%
+
+  Docker         ${GREEN}████████████████████████░░${RESET}  92%
+  AWS            ${GREEN}█████████████████████░░░░${RESET}  86%
+  Kubernetes     ${GREEN}█████████████████░░░░░░░░${RESET}  84%
+  Terraform      ${GREEN}████████████████░░░░░░░░░${RESET}  78%
+  ArgoCD         ${GREEN}███████████████░░░░░░░░░░${RESET}  76%
+  OpenTelemetry  ${GREEN}██████████████░░░░░░░░░░░${RESET}  73%
+
+  ROS/OpenCV  ${CYAN}██████████████████████░░${RESET}  90%
+  Linux       ${CYAN}█████████████████████░░░${RESET}  87%
+  Networking  ${CYAN}██████████████████░░░░░░${RESET}  82%
 `
 
 const projects = `
-${YELLOW}PROJECTS${RESET}
+${YELLOW}${BOLD}PROJECTS${RESET}
   1. Autonomous Robot for Robocon 2024
      ROS + OpenCV + Python — vision & path planning for DD Robocon
      ${GRAY}github.com/pratikwayal01/robocon-2024${RESET}
@@ -60,7 +68,7 @@ ${YELLOW}PROJECTS${RESET}
 `
 
 const contact = `
-${YELLOW}CONTACT${RESET}
+${YELLOW}${BOLD}CONTACT${RESET}
   email:    pratikwayal01@gmail.com
   github:   github.com/pratikwayal01
   linkedin: linkedin.com/in/pratikwayal
@@ -68,9 +76,23 @@ ${YELLOW}CONTACT${RESET}
   site:     devpratik.vercel.app
 `
 
+const status = `
+${YELLOW}${BOLD}SYSTEM STATUS${RESET}
+  status:   ${GREEN}● online${RESET}
+  role:     devops engineer
+  location: pune, india
+  coffee:   required
+`
+
+const footer = `
+${GRAY}────────────────────────────────────────────────────${RESET}
+${GRAY}tip: curl devpratik.vercel.app/projects  (per-section views)${RESET}
+${GRAY}     curl devpratik.vercel.app/hire      (psst, try it)${RESET}
+`
+
 const help = `
-${YELLOW}AVAILABLE ROUTES${RESET}
-  ${BOLD}/${RESET}           banner + this help
+${YELLOW}${BOLD}AVAILABLE ROUTES${RESET}
+  ${BOLD}/${RESET}           full profile (default)
   ${BOLD}/about${RESET}      about me
   ${BOLD}/skills${RESET}     skill set
   ${BOLD}/projects${RESET}   project list
@@ -78,30 +100,31 @@ ${YELLOW}AVAILABLE ROUTES${RESET}
   ${BOLD}/resume${RESET}     resume link
   ${BOLD}/hire${RESET}       easter egg
 
-${GRAY}try: curl devpratik.vercel.app/projects${RESET}
+${GRAY}everything is one curl away: curl devpratik.vercel.app${RESET}
 `
 
 const hire = `
-${YELLOW}HIRE ME${RESET}
-  Yes, I'm available.
-  Email: pratikwayal01@gmail.com
-  Link:  linkedin.com/in/pratikwayal
+${YELLOW}${BOLD}HIRE ME${RESET}
+  Yes, I'm available. Availability starts immediately.
+
+  email:    pratikwayal01@gmail.com
+  linkedin: linkedin.com/in/pratikwayal
 `
 
 const notFound = `
-${YELLOW}404${RESET}
-  No such route.${GRAY}try: curl devpratik.vercel.app/help${RESET}
+${YELLOW}${BOLD}404${RESET}
+  No such route. Try: ${GRAY}curl devpratik.vercel.app/help${RESET}
 `
 
 const routes: Record<string, string> = {
-  '/': banner + help,
-  '/about': banner + about,
-  '/skills': banner + skills,
-  '/projects': banner + projects,
-  '/contact': banner + contact,
+  '/': banner + status + about + skills + projects + contact + footer,
+  '/about': banner + about + footer,
+  '/skills': banner + skills + footer,
+  '/projects': banner + projects + footer,
+  '/contact': banner + contact + footer,
   '/help': banner + help,
-  '/resume': banner + `${YELLOW}RESUME${RESET}\n  https://drive.google.com/file/d/1FympfGyzprgnOhcsv5kXNQkfWYSjYP4d/view\n`,
-  '/hire': banner + hire,
+  '/resume': banner + `${YELLOW}${BOLD}RESUME${RESET}\n  https://drive.google.com/file/d/1FympfGyzprgnOhcsv5kXNQkfWYSjYP4d/view\n`,
+  '/hire': banner + hire + footer,
 }
 
 export function terminalResponse(pathname: string): string {
