@@ -86,8 +86,8 @@ ${YELLOW}${BOLD}SYSTEM STATUS${RESET}
 
 const footer = `
 ${GRAY}────────────────────────────────────────────────────${RESET}
-${GRAY}tip: curl devpratik.vercel.app/projects  (per-section views)${RESET}
-${GRAY}     curl devpratik.vercel.app/hire      (psst, try it)${RESET}
+${GRAY}tip: curl -L devpratik.vercel.app/projects  (per-section views)${RESET}
+${GRAY}     curl -L devpratik.vercel.app/hire      (psst, try it)${RESET}
 `
 
 const help = `
@@ -100,7 +100,7 @@ ${YELLOW}${BOLD}AVAILABLE ROUTES${RESET}
   ${BOLD}/resume${RESET}     resume link
   ${BOLD}/hire${RESET}       easter egg
 
-${GRAY}everything is one curl away: curl devpratik.vercel.app${RESET}
+${GRAY}everything is one curl away: curl -L devpratik.vercel.app${RESET}
 `
 
 const hire = `
@@ -113,7 +113,7 @@ ${YELLOW}${BOLD}HIRE ME${RESET}
 
 const notFound = `
 ${YELLOW}${BOLD}404${RESET}
-  No such route. Try: ${GRAY}curl devpratik.vercel.app/help${RESET}
+  No such route. Try: ${GRAY}curl -L devpratik.vercel.app/help${RESET}
 `
 
 const routes: Record<string, string> = {
