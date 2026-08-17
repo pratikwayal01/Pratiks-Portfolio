@@ -46,25 +46,25 @@ ${YELLOW}${BOLD}SKILLS${RESET}
 
 const projects = `
 ${YELLOW}${BOLD}PROJECTS${RESET}
-  1. Autonomous Robot for Robocon 2024
-     ROS + OpenCV + Python — vision & path planning for DD Robocon
-     ${GRAY}github.com/pratikwayal01/robocon-2024${RESET}
+  1. Pico — Distributed URL Shortener
+     FastAPI + PostgreSQL + Redis + Celery + RabbitMQ
+     ${GRAY}github.com/pratikwayal01/pico | picolink.vercel.app${RESET}
 
-  2. Image Forgery Detection (CNN)
-     Flask + Docker + GH Actions + AWS EC2 + NGINX
-     ${GRAY}github.com/pratikwayal01/Image-Forgery-Detection-CNN-Updated${RESET}
+  2. ResumePilot — JD-Tailored Resumes
+     Node.js + Express + Gemini AI + LaTeX
+     ${GRAY}github.com/pratikwayal01/resumepilot${RESET}
 
-  3. ParkCircle — Smart Parking Detection
-     TensorFlow + OpenCV, real-time occupancy from video
-     ${GRAY}github.com/pratikwayal01/ParkCircle${RESET}
+  3. 9XM TV — Morning Nostalgia
+     React + TypeScript + Tailwind + YouTube IFrame API
+     ${GRAY}github.com/pratikwayal01/9xm-tv | 9xm-morning-nostalgia.vercel.app${RESET}
 
-  4. This Portfolio (terminal v2)
-     React + TypeScript + Tailwind + Framer Motion
-     ${GRAY}github.com/pratikwayal01/Pratiks-Portfolio${RESET}
+  4. motionmind — Script to Animated Video
+     TypeScript + Canvas 2D + ffmpeg.wasm (client-side)
+     ${GRAY}github.com/pratikwayal01/motionmind${RESET}
 
-  5. Plant Health Monitoring
-     Flask + IoT sensors + weather APIs + Chart.js
-     ${GRAY}github.com/pratikwayal01/plant_health_monitoring_system${RESET}
+  5. Bore Interactive Inputs — CI/CD Runtime Inputs
+     Python + Flask + GitHub Actions (Marketplace Action)
+     ${GRAY}github.com/pratikwayal01/bore-interactive-inputs${RESET}
 `
 
 const contact = `

@@ -10,7 +10,7 @@ func TestRunCommand(t *testing.T) {
 		{"help", "available commands"},
 		{"whoami", "pratik"},
 		{"about", "Pratik Wayal"},
-		{"projects", "Robocon 2024"},
+		{"projects", "Pico — Distributed URL Shortener"},
 		{"contact", email},
 		{"sudo rm -rf /", "Permission denied"},
 		{"bogus", "command not found"},
