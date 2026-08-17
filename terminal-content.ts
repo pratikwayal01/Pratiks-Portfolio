@@ -20,7 +20,7 @@ const banner = GREEN + `
 
 const about = `
 ${YELLOW}${BOLD}ABOUT${RESET}
-  Hi, I'm Pratik Wayal — DevOps engineer from Pune, India.
+  Hi, I'm Pratik Wayal — DevOps engineer from Bangalore, India.
   I build infrastructure, automation and robots.
 
   Interests: autonomous systems, breaking things in staging
@@ -80,7 +80,7 @@ const status = `
 ${YELLOW}${BOLD}SYSTEM STATUS${RESET}
   status:   ${GREEN}● online${RESET}
   role:     devops engineer
-  location: pune, india
+  location: bangalore, india
   coffee:   required
 `
 

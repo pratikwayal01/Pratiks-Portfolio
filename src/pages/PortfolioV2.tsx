@@ -94,7 +94,7 @@ const PROC_LINES = [
   '  VmPeak:      still growing',
   '  Interests:   Linux, AWS, autonomous systems, breaking things in staging',
   '  Bug count:   0 (unconfirmed)',
-  '  Last seen:   Pune, Maharashtra',
+  '  Last seen:   Bangalore, Karnataka',
   '',
 ]
 
@@ -189,7 +189,7 @@ const FILE_CONTENTS: Record<string, string[]> = {
     '  Editor:Neovim (probably)',
     '  Uptime:22 years',
     '  WM:    tmux 3.3a',
-    '  Loc:   Pune, Maharashtra',
+    '  Loc:   Bangalore, Karnataka',
     '',
   ],
 
@@ -279,7 +279,7 @@ const FILE_CONTENTS: Record<string, string[]> = {
     'github:    github.com/pratikwayal01',
     'linkedin:  linkedin.com/in/pratikwayal',
     'twitter:   x.com/pratik_2520',
-    'location:  Pune, Maharashtra, India',
+    'location:  Bangalore, Karnataka, India',
   ],
 
   // hero/
@@ -1251,7 +1251,7 @@ const AboutSection = () => {
             ['Editor', 'Neovim (probably)'],
             ['Uptime', `${age} years`],
             ['WM', 'tmux 3.3a'],
-            ['Location', 'Pune, Maharashtra'],
+            ['Location', 'Bangalore, Karnataka'],
           ].map(([k, v]) => (
             <p key={k} className="mb-1">
               <span className="text-[var(--accent-amber)]">{k}:</span>{' '}
@@ -1661,7 +1661,7 @@ const ContactSection = () => {
               ['github',    'github.com/pratikwayal01',        'https://github.com/pratikwayal01'],
               ['linkedin',  'linkedin.com/in/pratikwayal',     'https://linkedin.com/in/pratikwayal'],
               ['x/twitter', 'x.com/pratik_2520',              'https://x.com/pratik_2520'],
-              ['location',  'Pune, Maharashtra, India',        null],
+              ['location',  'Bangalore, Karnataka, India',        null],
             ] as [string, string, string | null][]
           ).map(([k, v, href]) => (
             <p key={k}>

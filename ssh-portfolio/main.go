@@ -47,7 +47,7 @@ const banner = "\x1b[32m" + `
 
 var aboutText = strings.Join([]string{
 	"",
-	"  Hi, I'm Pratik Wayal — DevOps engineer from Pune, India.",
+	"  Hi, I'm Pratik Wayal — DevOps engineer from Bangalore, India.",
 	"  I build infrastructure, automation and robots.",
 	"",
 	"  Skills: Linux, AWS, Kubernetes, Docker, CI/CD, Python,",
@@ -116,7 +116,7 @@ var neofetchText = strings.Join([]string{
 	"        #####      pratik@pratikwayal",
 	"       #######     ──────────────────",
 	"       ##O#O##     OS:     DevOps Engineer",
-	"       #######     Host:   Pratik Wayal, Pune IN",
+	"       #######     Host:   Pratik Wayal, Bangalore, Karnataka",
 	"      ##########   Kernel: 5.x (opinions)",
 	"      ##########   Uptime: ∞",
 	"      ##########   Shell:  bash, zsh, fish",
