@@ -1,5 +1,5 @@
 // Terminal content for curl-friendly responses (mirrors ssh-portfolio/main.go).
-// Keep in sync with ssh-portfolio when adding/changing content.
+// Keep in sync with ssh-portfolio + portfolio-data.ts when adding/changing content.
 
 const GREEN = '\x1b[32m'
 const YELLOW = '\x1b[33m'
@@ -46,23 +46,27 @@ ${YELLOW}${BOLD}SKILLS${RESET}
 
 const projects = `
 ${YELLOW}${BOLD}PROJECTS${RESET}
-  1. Pico — Distributed URL Shortener
+  1. DataCloak — Local-First Prompt Protection
+     TypeScript + npm + Browser Extension (11 agent harnesses)
+     ${GRAY}github.com/pratikwayal01/datacloak | pratikwayal01.github.io/datacloak${RESET}
+
+  2. Pico — Distributed URL Shortener
      FastAPI + PostgreSQL + Redis + Celery + RabbitMQ
      ${GRAY}github.com/pratikwayal01/pico | picolink.vercel.app${RESET}
 
-  2. ResumePilot — JD-Tailored Resumes
+  3. ResumePilot — JD-Tailored Resumes
      Node.js + Express + Gemini AI + LaTeX
      ${GRAY}github.com/pratikwayal01/resumepilot${RESET}
 
-  3. 9XM TV — Morning Nostalgia
+  4. 9XM TV — Morning Nostalgia
      React + TypeScript + Tailwind + YouTube IFrame API
      ${GRAY}github.com/pratikwayal01/9xm-tv | 9xm-morning-nostalgia.vercel.app${RESET}
 
-  4. motionmind — Script to Animated Video
+  5. motionmind — Script to Animated Video
      TypeScript + Canvas 2D + ffmpeg.wasm (client-side)
      ${GRAY}github.com/pratikwayal01/motionmind${RESET}
 
-  5. Bore Interactive Inputs — CI/CD Runtime Inputs
+  6. Bore Interactive Inputs — CI/CD Runtime Inputs
      Python + Flask + GitHub Actions (Marketplace Action)
      ${GRAY}github.com/pratikwayal01/bore-interactive-inputs${RESET}
 `
@@ -87,6 +91,7 @@ ${YELLOW}${BOLD}SYSTEM STATUS${RESET}
 const footer = `
 ${GRAY}────────────────────────────────────────────────────${RESET}
 ${GRAY}tip: curl -L devpratik.vercel.app/projects  (per-section views)${RESET}
+${GRAY}     curl devpratik.vercel.app/mcp        (MCP endpoint for AI agents)${RESET}
 ${GRAY}     curl -L devpratik.vercel.app/hire      (psst, try it)${RESET}
 `
 

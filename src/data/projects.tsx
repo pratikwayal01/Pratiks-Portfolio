@@ -10,6 +10,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: 'DataCloak — Local-First Prompt Protection',
+    description: 'Swaps secrets and PII for realistic synthetic fakes before they reach the model, then restores originals in the response. Detects API keys, JWT/PEM, env secrets, DSNs, cloud IDs, PII plus opt-in NER. One binary covering 11 coding-agent harnesses, browser extension, 82 tests with corpus recall gate.',
+    stack: ['TypeScript', 'npm', 'esbuild', 'Browser Extension'],
+    github: 'https://github.com/pratikwayal01/datacloak',
+    demo: 'https://pratikwayal01.github.io/datacloak/'
+  },
+  {
     title: 'Pico — Distributed URL Shortener',
     description: 'A production-shaped URL shortener built on a 100% free hosting stack. Cache-aside Redis, async click recording via a message queue, ordered ID generation, real-time analytics (clicks, devices, countries, referrers), QR generation, key-based API auth, and a pip-installable CLI (picoctl).',
     stack: ['FastAPI', 'PostgreSQL', 'Redis', 'Celery', 'RabbitMQ', 'Vercel', 'Render'],
