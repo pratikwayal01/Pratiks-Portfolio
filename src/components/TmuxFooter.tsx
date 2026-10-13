@@ -135,6 +135,10 @@ const TmuxFooter = () => {
         </p>
         <p className="hidden items-center gap-2 md:flex">
           <span>|</span>
+          <a href="/mcp" title="Query this portfolio via MCP" className="hover:text-[#E5A445]">
+            mcp:/mcp <span className="text-green-500">●</span>
+          </a>
+          <span>|</span>
           <span>{formatUptime(bootTime)}</span>
           <span>|</span>
           <span>{clock}</span>
