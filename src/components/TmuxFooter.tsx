@@ -62,7 +62,16 @@ const TmuxFooter = () => {
   const location = useLocation()
   const [clock, setClock] = useState(() => formatClock(new Date()))
   const [section, setSection] = useState('hero')
-  const [insertMode, setInsertMode] = useState(false)
+  const [mcpOpen, setMcpOpen] = useState(false)
+
+  useEffect(() => {
+    if (!mcpOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMcpOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [mcpOpen])
   const [bootTime] = useState(() => {
     const saved = sessionStorage.getItem(BOOT_TIME_KEY)
     if (saved) {
@@ -121,6 +130,7 @@ const TmuxFooter = () => {
   }
 
   return (
+    <>
     <footer
       className="fixed bottom-0 right-0 z-[70] h-7 bg-[#0D0D0D] font-mono text-[11px] text-[#6B6B6B] transition-[left] duration-200 md:text-xs"
       style={{ left: 'var(--sidebar-w, 0px)' }}
@@ -135,9 +145,9 @@ const TmuxFooter = () => {
         </p>
         <p className="hidden items-center gap-2 md:flex">
           <span>|</span>
-          <a href="/mcp" title="Query this portfolio via MCP" className="hover:text-[#E5A445]">
+          <button onClick={() => setMcpOpen(true)} title="Query this portfolio via MCP" className="hover:text-[#E5A445]">
             mcp:/mcp <span className="text-green-500">●</span>
-          </a>
+          </button>
           <span>|</span>
           <span>{formatUptime(bootTime)}</span>
           <span>|</span>
@@ -145,6 +155,36 @@ const TmuxFooter = () => {
         </p>
       </div>
     </footer>
+    {mcpOpen && (
+      <div
+        className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 p-4 font-mono"
+        onClick={() => setMcpOpen(false)}
+      >
+        <div
+          className="w-full max-w-lg rounded-md border border-[#2A2A2A] bg-[#0D0D0D] p-5 text-sm text-[#C9C9C9] shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="mb-4 flex items-center justify-between">
+            <p className="text-[#E5A445]">$ query this portfolio via MCP</p>
+            <button onClick={() => setMcpOpen(false)} className="text-[#6B6B6B] hover:text-white" aria-label="Close">✕</button>
+          </div>
+          <p className="mb-1 text-xs text-[#6B6B6B]">endpoint</p>
+          <code className="mb-3 block rounded bg-[#1A1A1A] px-2 py-1.5 text-xs text-green-400 select-all">https://devpratik.vercel.app/mcp</code>
+          <p className="mb-1 text-xs text-[#6B6B6B]">claude code (single cmd)</p>
+          <code className="mb-3 block rounded bg-[#1A1A1A] px-2 py-1.5 text-xs text-green-400 select-all">claude mcp add --transport http portfolio https://devpratik.vercel.app/mcp</code>
+          <p className="mb-1 text-xs text-[#6B6B6B]">opencode / cursor (opencode.json)</p>
+          <code className="mb-3 block whitespace-pre rounded bg-[#1A1A1A] px-2 py-1.5 text-xs text-green-400 select-all">{`{
+  "mcpServers": {
+    "portfolio": { "url": "https://devpratik.vercel.app/mcp" }
+  }
+}`}</code>
+          <p className="mb-1 text-xs text-[#6B6B6B]">no client? raw curl works too</p>
+          <code className="mb-3 block rounded bg-[#1A1A1A] px-2 py-1.5 text-xs text-green-400 select-all">{`curl -sL https://devpratik.vercel.app/mcp -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"query","arguments":{"q":"datacloak"}}}'`}</code>
+          <p className="text-xs text-[#6B6B6B]">tools: get_about · get_skills · get_projects · get_contact · query — esc to close</p>
+        </div>
+      </div>
+    )}
+    </>
   )
 }
 
