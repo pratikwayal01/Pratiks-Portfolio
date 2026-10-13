@@ -90,8 +90,13 @@ ${YELLOW}${BOLD}SYSTEM STATUS${RESET}
 
 const footer = `
 ${GRAY}────────────────────────────────────────────────────${RESET}
+${GREEN}${BOLD}AI AGENT? don't just read — query it.${RESET}
+  endpoint: ${BOLD}https://devpratik.vercel.app/mcp${RESET}
+  try now (single cmd):
+    ${GRAY}curl -sL https://devpratik.vercel.app/mcp -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"query","arguments":{"q":"datacloak"}}}'${RESET}
+  claude code:
+    ${GRAY}claude mcp add --transport http portfolio https://devpratik.vercel.app/mcp${RESET}
 ${GRAY}tip: curl -L devpratik.vercel.app/projects  (per-section views)${RESET}
-${GRAY}     curl devpratik.vercel.app/mcp        (MCP endpoint for AI agents)${RESET}
 ${GRAY}     curl -L devpratik.vercel.app/hire      (psst, try it)${RESET}
 `
 

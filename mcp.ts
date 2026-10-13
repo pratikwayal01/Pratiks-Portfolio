@@ -2,6 +2,7 @@
 // Wired into middleware.ts — no extra deps, no server to run.
 // Usage from any MCP client: endpoint https://devpratik.vercel.app/mcp
 import { portfolio } from './portfolio-data'
+import { isTerminalRequest } from './terminal-content'
 
 const SERVER = { name: 'pratik-portfolio', version: '1.0.0' }
 const PROTOCOL = '2024-11-05'
@@ -85,9 +86,26 @@ export async function handleMcp(request: Request): Promise<Response> {
     })
   }
 
-  // GET = human/curl-friendly manifest (MCP inspectors probe POST for JSON-RPC).
+  // GET = human/curl-friendly setup card; JSON manifest for agents/browsers.
   if (request.method === 'GET') {
-    return new Response(
+    const ua = request.headers.get('user-agent') ?? ''
+    const accept = request.headers.get('accept') ?? ''
+    if (isTerminalRequest(ua) && !accept.includes('application/json')) {
+      return new Response(
+        [
+          '',
+          '  AI AGENT? don\'t just read — query it.',
+          '  endpoint: https://devpratik.vercel.app/mcp',
+          '  try now (single cmd):',
+          `    curl -sL https://devpratik.vercel.app/mcp -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"query","arguments":{"q":"datacloak"}}}'`,
+          '  claude code:',
+          '    claude mcp add --transport http portfolio https://devpratik.vercel.app/mcp',
+          '  tools: get_about, get_skills, get_projects, get_contact, query',
+          '',
+        ].join('\n'),
+        { headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Access-Control-Allow-Origin': '*' } },
+      )
+    }    return new Response(
       JSON.stringify({
         name: SERVER.name,
         version: SERVER.version,
