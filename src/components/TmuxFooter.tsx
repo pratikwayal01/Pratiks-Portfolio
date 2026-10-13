@@ -63,6 +63,7 @@ const TmuxFooter = () => {
   const [clock, setClock] = useState(() => formatClock(new Date()))
   const [section, setSection] = useState('hero')
   const [mcpOpen, setMcpOpen] = useState(false)
+  const [insertMode, setInsertMode] = useState(false)
 
   useEffect(() => {
     if (!mcpOpen) return
